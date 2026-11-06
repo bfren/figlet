@@ -26,7 +26,7 @@ figlet 2.2.5 was released in 2012 and has not changed since, so new builds are o
 
 ```Dockerfile
 # load figlet
-FROM quay.io/bfren-bin/figlet:2.2.5-261022 AS figlet
+FROM quay.io/bfren-bin/figlet:2.2.5-261106 AS figlet
 
 # use it with any Linux distribution
 FROM alpine:3.24

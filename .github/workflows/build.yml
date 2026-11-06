@@ -1,16 +1,30 @@
 name: build
 
 on:
+  push:
+    branches: ['**']
+    tags-ignore: ['**']
+    # docs-only pushes would rebuild the same VERSION, which main refuses
+    paths-ignore: ['**.md']
   workflow_dispatch:
+
+# one run per branch at a time - on other branches a newer push cancels the older run, so it cannot finish last and
+# overwrite the newer images; on main it waits, so a release is never cancelled halfway through tagging
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
   build:
+    strategy:
+      matrix:
+        figlet: [ "2.2.5" ]
     uses: bfren/docker/.github/workflows/build-bin.yml@main
     with:
       image: figlet
       build-args: |
-        FIGLET=2.2.5
+        FIGLET=${{ matrix.figlet }}
       tags: |
-        2.2.5-${VERSION}
+        ${{ matrix.figlet }}-${VERSION}
     secrets:
       QUAY_TOKEN: ${{ secrets.QUAY_TOKEN }}

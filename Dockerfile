@@ -1,4 +1,4 @@
-ARG ALPINE=3.24.2
+ARG ALPINE=3.24
 
 # use Alpine (musl) to build - a static musl binary runs on any Linux distribution
 FROM alpine:${ALPINE} AS build

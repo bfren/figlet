@@ -30,10 +30,11 @@ Images are published to `quay.io/bfren-bin/figlet`:
 
 | Tag              | Example          |
 | ---------------- | ---------------- |
-| `FIGLET-VERSION` | `2.2.5-261106.2` |
+| `FIGLET-VERSION` | `2.2.5-261106.3` |
 
-`VERSION` is the build date (`yymmdd`) in [VERSION](VERSION) - pin it to get exactly the same executable every
-time. Builds from any branch other than `main` add `-dev` to every tag.
+`VERSION` is the build date (`yymmdd`) in [VERSION](VERSION) - pin it to get exactly the same executable every time.
+Builds from any branch other than `main` add `-dev` to every tag. Each release is also a GitHub release, `v<VERSION>`,
+on the commit that built it.
 
 ## Adding a release
 
@@ -58,7 +59,7 @@ You can find live examples in my [Alpine](https://github.com/bfren/docker-alpine
 
 ```Dockerfile
 # load figlet
-FROM quay.io/bfren-bin/figlet:2.2.5-261106.2 AS figlet
+FROM quay.io/bfren-bin/figlet:2.2.5-261106.3 AS figlet
 
 # use any Linux distribution
 FROM alpine:3.24
